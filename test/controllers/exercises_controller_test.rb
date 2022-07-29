@@ -17,7 +17,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create exercise" do
     assert_difference('Exercise.count') do
-      post exercises_url, params: { exercise: { type: @exercise.type } }
+      post exercises_url, params: { exercise: { activity: @exercise.activity } }
     end
 
     assert_redirected_to exercise_url(Exercise.last)
@@ -34,7 +34,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update exercise" do
-    patch exercise_url(@exercise), params: { exercise: { type: @exercise.type } }
+    patch exercise_url(@exercise), params: { exercise: { activity: @exercise.activity } }
     assert_redirected_to exercise_url(@exercise)
   end
 
