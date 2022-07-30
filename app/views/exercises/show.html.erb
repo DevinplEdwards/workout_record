@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Activity:</strong>
-  <%= @exercise.activity %>
-</p>
-
-<%= link_to 'Edit', edit_exercise_path(@exercise) %> |
-<%= link_to 'Back', exercises_path %>
+<div class='card'>
+  <div class='card-title' >
+    <%= @exercise.activity %>
+  </div>
+  <div class='card-body'>Info about exercise
+  </div>
+  <div class='card-link'>
+    <%= link_to 'Edit', edit_exercise_path(@exercise), class: 'btn btn-secondary' %> |
+    <%= link_to 'Back', exercises_path, class: 'btn btn-secondary' %> |
+    <%= link_to 'Remove', @exercise, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </div>
+</div>
