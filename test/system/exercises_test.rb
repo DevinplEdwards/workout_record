@@ -14,7 +14,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit exercises_url
     click_on "New Exercise"
 
-    fill_in "Type", with: @exercise.type
+    fill_in "Activity", with: @exercise.activity
     click_on "Create Exercise"
 
     assert_text "Exercise was successfully created"
@@ -25,7 +25,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit exercises_url
     click_on "Edit", match: :first
 
-    fill_in "Type", with: @exercise.type
+    fill_in "Activity", with: @exercise.activity
     click_on "Update Exercise"
 
     assert_text "Exercise was successfully updated"
