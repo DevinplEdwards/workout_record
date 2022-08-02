@@ -7,7 +7,7 @@
             <li><a class="dropdown-item" href="#">Action</a><li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><div class="dropdown-divider"></div></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
         </ul>
     </li>
 <% else %>
