@@ -1,0 +1,21 @@
+<% if current_user %>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Users
+        </a>
+        <ul class="dropdown-menu dropdown-menu-1g-end" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Home", root_path, class: 'dropdown-item' %></li>
+            <li><%= link_to "Home", root_path, class: 'dropdown-item' %></li>
+            <li><%= link_to "Home", root_path, class: 'dropdown-item' %></li>
+            <li><div class="dropdown-divider"></div></li>
+            <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+        </ul>
+    </li>
+<% else %>
+    <li class="nav-item">
+        <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    </li>
+<% end %>
