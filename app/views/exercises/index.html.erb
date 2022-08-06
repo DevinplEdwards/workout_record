@@ -5,7 +5,6 @@
       <thead>
         <tr>
           <th>Activity</th>
-          <th>Entry</th>
         </tr>
       </thead>
 
@@ -14,7 +13,6 @@
           <% @exercises.each do |exercise| %>
             <tr>
               <td><%= link_to exercise.activity, exercise %></td>
-              <td><%= render 'entryform' %></td>
             </tr>
           <% end %>
         </div>

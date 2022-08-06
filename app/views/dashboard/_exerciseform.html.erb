@@ -1,7 +1,12 @@
 <%= form_with model: @exercise do |form| %>
 
   <div class="field">
-      <%= link_to @activity %>
+    <% @exercises.each do |exercise| %>
+      <tr>
+        <td><%= link_to exercise.activity, exercise %></td>
+        <%= render 'entryform' %>
+      </tr>
+    <% end %>
   </div>
 
 <% end %>
