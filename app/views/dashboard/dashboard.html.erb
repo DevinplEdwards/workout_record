@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-body">
+    <h1 class="card-title">Dashboard</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Entry</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div class="card-text">
+            <tr>
+                <td><%= render 'exerciseform' %></td>
+                <td><%= render 'entryform' %></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <div class="card-body d-grid gap-2 d-md-flex justify-content-md-end">
+        <%= link_to '+ Add New Exercise', new_exercise_path, class: 'btn btn-success text-light me-md-2' %>
+    </div>
+    </div>
+</div>
