@@ -1,13 +1,9 @@
 class DashboardController < ApplicationController
     before_action :set_exercise, only: %i[ show edit update destroy ]
     before_action :set_entry, only: %i[ show edit update destroy ]
-    
 
-    def entries
+    def dashboard
         @entries = Entry.all
-    end
-
-    def exercises
         @exercises = Exercise.all
     end
 
