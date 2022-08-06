@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :exercises, only: [:index, :show, :new, :create] do
     resources :entries, only: [:new, :create]
   end
- 
+
+
   devise_scope :user do
     # Redirests signing out users back to sign-in
     get "users", to: "devise/sessions#new"
@@ -13,6 +14,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #set root path
-  root "exercises#index"
+  root "dashboard#dashboard"
 
 end
