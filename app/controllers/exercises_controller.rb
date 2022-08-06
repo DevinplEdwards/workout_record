@@ -13,6 +13,7 @@ class ExercisesController < ApplicationController
   # GET /exercises/new
   def new
     @exercise = Exercise.new
+    @entries = Entry.new
   end
 
   # GET /exercises/1/edit
@@ -69,6 +70,6 @@ class ExercisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:activity)
+      params.require(:exercise).permit(:activity, entries_attributes: [:id, :weight])
     end
 end

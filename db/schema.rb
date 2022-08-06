@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_30_020227) do
+ActiveRecord::Schema.define(version: 2022_08_06_032009) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "weight"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2022_07_30_020227) do
     t.string "activity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "entry_id"
+    t.index ["entry_id"], name: "index_exercises_on_entry_id"
   end
 
   create_table "users", force: :cascade do |t|

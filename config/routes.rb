@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :exercises
+  resources :exercises, only: [:index, :show, :new, :create] do
+    resources :entries, only: [:new, :create]
+  end
  
   devise_scope :user do
     # Redirests signing out users back to sign-in
