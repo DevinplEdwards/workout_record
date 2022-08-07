@@ -1,6 +1,11 @@
-<h1>Editing Exercise</h1>
+<div class="container">
+    <div class='card'>
+        <h1><%= link_to @exercise.activity, @exercise %></h1>
 
-<%= render 'form', exercise: @exercise %>
+        <%= render 'form', exercise: @exercise %>
 
-<%= link_to 'Show', @exercise %> |
-<%= link_to 'Back', exercises_path %>
+        <div>
+            <%= link_to 'Back', exercises_path %>
+        </div>
+    </div>
+</div>
