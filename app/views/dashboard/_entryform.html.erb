@@ -1,7 +1,11 @@
 <%= form_with model: @entry do |form| %>
 
   <div class="field">
-      <td><%= form.text_field :weight %></td>
+      <td>
+      <%= form.text_field :weight, size: 1 %>
+      <%= form.submit %>
+      </td>
   </div>
 
 <% end %>
+
