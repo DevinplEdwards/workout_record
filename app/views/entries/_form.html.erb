@@ -1,22 +1,12 @@
-<%= form_with(model: entry, local: true) do |form| %>
-  <% if entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
-
-      <ul>
-      <% entry.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: [exercise, entry]) do |f| %>
 
   <div class="field">
-    <%= form.label :weight %>
-    <%= form.integer_field :activity %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight, size: 1 %> lbs
+      <div class="actions">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
 <% end %>

@@ -1,6 +1,12 @@
-<h1>Editing Exercise</h1>
+<div class='card'>
+    <div class='card-title' >
+        <h1>Editing Activity</h1>
+    </div>
+    <div class='card-body'>
+        <%= render 'form', exercise: @exercise %>
+    </div>
+</div>
 
-<%= render 'form', exercise: @exercise %>
-
-<%= link_to 'Show', @exercise %> |
-<%= link_to 'Back', exercises_path %>
+<div class='card'>
+    <%= button_to 'Delete Activity', @exercise, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger float-end' %>
+</div>

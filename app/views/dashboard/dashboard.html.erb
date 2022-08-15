@@ -11,7 +11,14 @@
 
         <tbody>
         <div class="card-text">
-            <%= render 'exerciseform' %>
+            <div class="field">
+                <% @exercises.each do |exercise| %>
+                <tr>
+                    <td><%= link_to exercise.activity, exercise %></td>
+                    <td><%= @entry.weight %> lbs</td>
+                </tr>
+                <% end %>
+            </div>
         </div>
         </tbody>
     </table>

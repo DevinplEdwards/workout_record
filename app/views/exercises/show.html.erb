@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
 <div class='card'>
   <div class='card-title' >
     <h1><%= @exercise.activity %></h1>
   </div>
-  <div class='card-body'>Info about exercise
+  <div class='card-body'>
+    <%= render 'entries/form', exercise: @exercise, entry: @exercise.build_entry, placeholder: @entry.weight %>
   </div>
   <div class='card-link'>
-    <%= link_to 'Edit', edit_exercise_path(@exercise), class: 'btn btn-secondary' %> |
-    <%= link_to 'Back', exercises_path, class: 'btn btn-secondary' %> |
+    <%= link_to 'Edit', edit_exercise_path(@exercise) %> |
+    <%= link_to 'Back', exercises_path %> |
     <%= button_to 'Remove', @exercise, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   </div>
 </div>
