@@ -1,5 +1,9 @@
 <% if notice %>
-    <p class ="notice"><%= notice %></p>
+    <div class="card">
+        <p class ="notice"><%= notice %></p>
+    </div>
 <% elsif alert %>
-    <p class ="alert"><%= alert %></p>
+    <div class="card">
+        <p class ="alert"><%= alert %></p>
+    </div>
 <% end %>
