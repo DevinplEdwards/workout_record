@@ -1,29 +1,29 @@
 class EntriesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_exercise
+  before_action :authenticate_user!, :set_exercise
 
   def create
     @entry = @exercise.build_entry(entry_params)
+    @entry.user = current_user
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to exercise_path(@exercise), notice: "Entry was successfully created." }
+        format.html { redirect_to dashboard_path, notice: "Entry was successfully saved." }
         format.json { render :show, status: :created, location: @entry }
       else
-        format.html { redirect_to exercise_path(@exercise), status: :unprocessable_entity }
+        format.html { redirect_to dashboard_path, status: :unprocessable_entity, alert: "Failed to save entry!" }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    @entry = @exercise.entry.find(params[:id])
+    @entry = Entry.find_by(id: params[:id])
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to exercise_url(@exercise), notice: "Entry was successfully updated." }
+        format.html { redirect_to dashboard_path, notice: "Entry was successfully updated." }
         format.json { render :show, status: :ok, location: @entry }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, alert: "Failed to save entry!" }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +42,7 @@ class EntriesController < ApplicationController
   private
 
     def set_exercise
-      @exercise = Exercise.find(params[:exercise_id])
+      @exercise = Exercise.find_by(id: params[:exercise_id])
     end
 
     # Only allow a list of trusted parameters through.

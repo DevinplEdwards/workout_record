@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 #added gems
 gem 'bootstrap', '~> 5.2.0'
 gem 'devise'
-
+gem 'railties'
 #tests
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,29 +1,34 @@
 <div class="card">
     <div class="card-body">
     <h1 class="card-title">Dashboard</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Activity</th>
-            <th>Entry</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <div class="card-text">
-            <div class="field">
+    
+        <table>
+            <thead>
+            <tr>
+                <th>Activity</th>
+                <th>Entry</th>
+            </tr>
+            </thead>
+            <tbody>
                 <% @exercises.each do |exercise| %>
-                <tr>
-                    <td><%= link_to exercise.activity, exercise %></td>
-                    <td><%= @entry.weight %> lbs</td>
-                </tr>
+                    <% if exercise.user == current_user %>
+                        <tr>
+                            <td>
+                                <span class="activity-cell">
+                                    <%= render partial: 'exercise_form', locals: { exercise: exercise } %>
+                                </span>
+                            </td>
+                            <td><%= render partial: 'entry_form', locals: { exercise: exercise } %></td>
+                        </tr>
+                    <% end %>
                 <% end %>
-            </div>
+            </tbody>
+        </table>
+        <div class="card-footer">
+            <%= link_to '+ Add New Exercise', new_exercise_path, class: 'btn btn-success text-light' %>
+            <%= button_tag 'Save All', type: 'submit', class: 'btn btn-primary' %>
         </div>
-        </tbody>
-    </table>
-    <div class="card-footer">
-        <%= link_to '+ Add New Exercise', new_exercise_path, class: 'btn btn-success text-light' %>
-    </div>
     </div>
 </div>
+
+<%= javascript_include_tag 'dashboard' %>

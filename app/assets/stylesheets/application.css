@@ -18,12 +18,21 @@
     margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 15px;
-    margin-right: 15px
+    margin-right: 15px;
+    background-color: #fff;
  }
 
  th, td {
     margin-left: 15px;
     margin-right: 15px;
     padding: 2px;
-    border: 1px solid pink;
+ }
+
+ .custom-card {
+   background-color: #fff;
+ }
+
+ .card-footer {
+   background-color: #fff;
+   border-top: none;
  }

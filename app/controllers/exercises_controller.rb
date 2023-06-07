@@ -1,16 +1,9 @@
 class ExercisesController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_exercise, only: %i[ show edit update destroy ]
-    before_action :set_user
+    before_action :authenticate_user!, :set_exercise, only: %i[ show edit update destroy ], :set_user
 
   # GET /exercises or /exercises.json
   def index
     @exercises = Exercise.all
-  end
-
-  # GET /exercises/1 or /exercises/1.json
-  def show
-    @entry = Entry.new
   end
 
   # GET /exercises/new
@@ -30,7 +23,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       if @exercise.save
-        format.html { redirect_to exercise_url(@exercise), notice: "Exercise was successfully created." }
+        format.html { redirect_to root_path, notice: "Exercise was successfully created." }
         format.json { render :show, status: :created, location: @exercise }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,11 +32,14 @@ class ExercisesController < ApplicationController
     end
   end
 
+  def create_default_entry
+    entries.create(weight: 0)
+  end
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
     respond_to do |format|
       if @exercise.update(exercise_params)
-        format.html { redirect_to exercise_url(@exercise), notice: "Exercise was successfully updated." }
+        format.html { redirect_to root_path, notice: "Exercise was successfully updated." }
         format.json { render :show, status: :ok, location: @exercise }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +53,7 @@ class ExercisesController < ApplicationController
     @exercise.destroy
 
     respond_to do |format|
-      format.html { redirect_to exercises_url, notice: "Exercise was successfully destroyed." }
+      format.html { redirect_to dashboard_path, notice: "Exercise was successfully destroyed." }
       format.json { head :no_content }
     end
   end

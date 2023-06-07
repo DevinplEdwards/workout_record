@@ -1,9 +1,8 @@
 class DashboardController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_user
+    before_action :authenticate_user!, :set_user
 
     def dashboard
-        @exercises = Exercise.includes(:entry).all
+        @exercises = current_user.exercises.includes(:entry)
         @entries = Entry.all
         @entry = Entry.new
     end

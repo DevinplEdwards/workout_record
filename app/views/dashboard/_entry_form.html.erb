@@ -1,0 +1,15 @@
+<% if exercise.entry.nil? %>
+  <%= form_with(model: exercise.entry, url: exercise_entries_path(exercise, exercise.entry), method: :patch, id: "entry-form-#{exercise.id}") do |form| %>
+    <%= form.hidden_field :exercise_id, value: exercise.id %>
+    <%= form.number_field :weight, class: 'weight-field', placeholder: 'Enter weight' %>
+    <%= form.label :weight, 'lbs', class: 'fw-bold' %>
+    <%= form.submit 'Add Entry' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: exercise.entry, url: exercise_entry_path(exercise, exercise.entry), id: "entry-form-#{exercise.id}", method: :patch) do |form| %>
+    <%= form.hidden_field :exercise_id, value: exercise.id %>
+    <%= form.number_field :weight, class: 'weight-field', placeholder: 'Enter weight' %>
+    <%= form.label :weight, 'lbs', class: 'fw-bold' %>    
+    <%= form.submit 'Update Entry' %>
+  <% end %>
+<% end %>
