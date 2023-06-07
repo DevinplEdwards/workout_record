@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class='card'>
     <div class='card-title' >
         <h1>Editing Activity</h1>
@@ -9,4 +10,16 @@
 
 <div class='card'>
     <%= button_to 'Delete Activity', @exercise, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger float-end' %>
+=======
+<div class="container">
+    <div class='card'>
+        <h1><%= link_to @exercise.activity, @exercise %></h1>
+
+        <%= render 'form', exercise: @exercise %>
+
+        <div>
+            <%= link_to 'Back', exercises_path %>
+        </div>
+    </div>
+>>>>>>> origin/styling
 </div>
