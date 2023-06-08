@@ -5,11 +5,6 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     @exercise = exercises(:one)
   end
 
-  test "should get index" do
-    get exercises_url
-    assert_response :success
-  end
-
   test "should get new" do
     get new_exercise_url
     assert_response :success
@@ -21,16 +16,6 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to exercise_url(Exercise.last)
-  end
-
-  test "should show exercise" do
-    get exercise_url(@exercise)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_exercise_url(@exercise)
-    assert_response :success
   end
 
   test "should update exercise" do

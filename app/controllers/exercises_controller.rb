@@ -1,10 +1,5 @@
 class ExercisesController < ApplicationController
-    before_action :authenticate_user!, :set_exercise, only: %i[ show edit update destroy ], :set_user
-
-  # GET /exercises or /exercises.json
-  def index
-    @exercises = Exercise.all
-  end
+  before_action :authenticate_user!, :set_exercise, :set_user
 
   # GET /exercises/new
   def new
@@ -20,32 +15,17 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     @exercise.user = current_user
-
-    respond_to do |format|
-      if @exercise.save
-        format.html { redirect_to root_path, notice: "Exercise was successfully created." }
-        format.json { render :show, status: :created, location: @exercise }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @exercise.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with_exercise(@exercise, "Exercise was successfully created.", "Failed to create exercise!")
   end
 
   def create_default_entry
     entries.create(weight: 0)
   end
+
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
-    respond_to do |format|
-      if @exercise.update(exercise_params)
-        format.html { redirect_to root_path, notice: "Exercise was successfully updated." }
-        format.json { render :show, status: :ok, location: @exercise }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @exercise.errors, status: :unprocessable_entity }
-      end
-    end
+    @exercise = Exercise.find(params[:id])
+    respond_with_exercise(@exercise, "Exercise was successfully updated.", "Failed to update exercise!")
   end
 
   # DELETE /exercises/1 or /exercises/1.json
@@ -71,6 +51,14 @@ class ExercisesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def exercise_params
       params.require(:exercise).permit(:activity, entry_attributes: [:id, :weight], user_attributes: [:id])
+    end
+
+    def respond_with_exercise(exercise, notice_message, error_message)
+      if exercise.save
+        redirect_to root_path, notice: notice_message
+      else
+        redirect_to root_path, status: :unprocessable_entity, alert: error_message
+      end
     end
 
 end

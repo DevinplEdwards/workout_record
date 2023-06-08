@@ -3,8 +3,6 @@ class DashboardController < ApplicationController
 
     def dashboard
         @exercises = current_user.exercises.includes(:entry)
-        @entries = Entry.all
-        @entry = Entry.new
     end
 
     private
