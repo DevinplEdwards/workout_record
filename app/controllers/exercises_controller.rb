@@ -1,5 +1,7 @@
 class ExercisesController < ApplicationController
-  before_action :authenticate_user!, :set_exercise, :set_user
+  before_action :authenticate_user!, :set_user
+  before_action :set_exercise, only: %i[show edit update destroy]
+ 
 
   # GET /exercises/new
   def new
