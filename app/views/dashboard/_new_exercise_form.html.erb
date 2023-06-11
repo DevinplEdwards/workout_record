@@ -1,0 +1,18 @@
+<%= form_with(model: @new_exercise, remote: true, html: { class: 'exercise-form' }) do |f| %>
+  <% if @new_exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+      <ul>
+        <% @new_exercise.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.text_field :activity, class: 'form-control', placeholder: 'Enter activity' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create Exercise', class: 'btn btn-primary save-exercise-btn' %>
+  </div>
+<% end %>

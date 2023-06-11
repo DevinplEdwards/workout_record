@@ -1,7 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :authenticate_user!, :set_user
   before_action :set_exercise, only: %i[show edit update destroy]
- 
 
   # GET /exercises/new
   def new
@@ -57,9 +56,9 @@ class ExercisesController < ApplicationController
 
     def respond_with_exercise(exercise, notice_message, error_message)
       if exercise.save
-        redirect_to root_path, notice: notice_message
+        notice: notice_message
       else
-        redirect_to root_path, status: :unprocessable_entity, alert: error_message
+        status: :unprocessable_entity, alert: error_message
       end
     end
 

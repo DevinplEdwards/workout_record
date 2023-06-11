@@ -4,13 +4,20 @@ class EntriesController < ApplicationController
   def create
     @entry = @exercise.build_entry(entry_params)
     @entry.user = current_user
-    respond_with_entry(@entry, "Entry was successfully saved.", "Failed to save entry!")
   end
 
   def update
     @entry = Entry.find_by(id: params[:id])
+  
     respond_to do |format|
-    respond_with_entry(@entry, "Entry was successfully updated.", "Failed to save entry!")
+      if @entry.update(entry_params)
+        format.html { redirect_to root_path, notice: "Entry was successfully updated." }
+        format.json { render :show, status: :ok, location: @entry }
+      else
+        format.html { redirect_to root_path, status: :unprocessable_entity, alert: "Failed to update entry!" }
+        format.json { render json: @entry.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
